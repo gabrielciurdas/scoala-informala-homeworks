@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		String input = "Alcie has one dog, three towsand nine hundreds eighty eight is a year";
+		String input = "Alice has one dog, three towsand nine hundreds eighty eight is a year";
 		
 		StringUtility stringUtility = new StringUtility();
 		
