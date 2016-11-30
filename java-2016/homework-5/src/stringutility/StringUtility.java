@@ -68,7 +68,8 @@ public class StringUtility {
 
 	private void removeNonAlphabetCharacters() {
 		for (int i = 0; i < separateWords.length; i++) {
-			setSeparateWord(i, getSeparateWord(i).replaceAll("[^a-zA-Z]", ""));
+			setSeparateWord(i, getSeparateWord(i).replaceAll("[^a-zA-Z0-9_-]", ""));
+			//System.out.println(separateWords[i]);
 		}
 	}
 
