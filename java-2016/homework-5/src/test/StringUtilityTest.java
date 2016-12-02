@@ -110,6 +110,42 @@ public class StringUtilityTest {
 	}
 	
 	/**
+	 * Tests removeWhiteSpace method. Fails if the white space is not removed from 
+	 * new lines.
+	 */
+	@Test
+	public void removeWhiteSpaceFromNewLine() {
+		String input = "two tousand sixteen                                   "
+				+ "new                   " + "lines!" + "\n" + "     " + "\n";
+
+		StringUtility stringUtility = new StringUtility();
+		String actualCastedString = stringUtility.castWordNumberToNumber(input);
+		actualCastedString = stringUtility.removeWhiteSpace(actualCastedString);
+
+		String correctlyCastedString = "2tousandsixteennewlines!";
+
+		Assert.assertEquals(actualCastedString, correctlyCastedString);
+	}
+	
+	/**
+	 * Tests removeWhiteSpace method. Fails if the white space is not removed from 
+	 * new lines and tabs.
+	 */
+	@Test
+	public void removeWhiteSpaceFromTabs() {
+		String input = "two tousand " + "\t" + "\t" + " sixteen"                                                           
+				+ "new " + "\t" + " lines!" + "\n" + "     " + "\n";
+		System.out.println(input);
+		StringUtility stringUtility = new StringUtility();
+		String actualCastedString = stringUtility.castWordNumberToNumber(input);
+		actualCastedString = stringUtility.removeWhiteSpace(actualCastedString);
+
+		String correctlyCastedString = "2tousandsixteennewlines!";
+
+		Assert.assertEquals(actualCastedString, correctlyCastedString);
+	}
+	
+	/**
 	 * Tests castWordNumberToNumber method. Fails if word numbers followed by comma 
 	 * are not transformed to numbers.
 	 */
