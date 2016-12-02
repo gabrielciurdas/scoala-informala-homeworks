@@ -1,16 +1,25 @@
 package stringutility;
 
+/**
+ * The Main class for StringUtility methods call.
+ * 
+ * @author Gabriel Ciurdas
+ * <p> Date: 02/12/2016
+ */
 public class Main {
 
+	/**
+	 * Main method.
+	 * @param args represents the command line arguments.
+	 */
 	public static void main(String[] args) {
 		
-		String input = "Alice has one dog, three towsand nine hundreds eighty eight is a year";
+		String input = "Alice has one dog. His name is NotSoLucky and he Was born in two thousand sixteen.";
 		
 		StringUtility stringUtility = new StringUtility();
 		
-		String noDigitWords = stringUtility.castWordsToDigits(input);
-		noDigitWords = stringUtility.removeWhiteSpace(noDigitWords);
-		
+		String noDigitWords = stringUtility.castWordNumberToNumber(input);
+		//noDigitWords = stringUtility.removeWhiteSpace(noDigitWords); //works
 		System.out.println(noDigitWords);
 	}
 }
