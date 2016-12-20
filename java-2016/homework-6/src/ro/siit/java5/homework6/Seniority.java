@@ -14,7 +14,7 @@ public class Seniority {
 			seniorityList[i] = i;
 		}
 	}
-	public byte getSeniorityList(byte i) {
+	public byte getSeniorityFromList(byte i) {
 		return seniorityList[i];
 	}
 

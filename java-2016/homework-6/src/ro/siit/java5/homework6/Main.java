@@ -19,9 +19,6 @@ public class Main {
 		employees.add(new Employee(4, "Software Tester2"));
 		employees.add(new Employee(5, "Manager1"));
 		
-		EmployeeList<Seniority, Employee> employeeList = new EmployeeList<Seniority, Employee>(seniority, employees);
-		employeeList.toString();
-		//Seniority seniority = new Seniority();
 		
 		/*companyManagementSoftware.setJuniorSoftwareDevelopers(new HashSet<EmployeeList<Seniority, Employee>>());
 		companyManagementSoftware.setJuniorSoftwareTesteres(new HashSet<EmployeeList<Seniority, Employee>>());

@@ -1,45 +1,20 @@
 package ro.siit.java5.homework6;
 
-import java.util.ArrayList;
+import java.util.Map;
 import java.util.TreeMap;
 
-public class EmployeeList<Seniority, Employee> {
+public class EmployeeList {
 	
-	private TreeMap<Seniority, Employee> employeeList = new TreeMap<>();
-	private Seniority seniority;
-	private Employee employee;
+	private Map<Seniority, Employee> employeeList = new TreeMap<>();
+
+	public void setEmployeeList(Seniority seniority, Employee employee) {
+		employeeList.put(seniority, employee);
+	}
 	
-	public EmployeeList(Seniority seniority, Employee employee) {
-		this.seniority = seniority;
-		this.employee = employee;
-	}
-
-	public EmployeeList(Seniority seniority, ArrayList<Employee> employees) {
-		this.seniority = seniority;
-		employees.add(employee);
-	}
-
-	/**
-	 * @return the employeeList
-	 */
-	public TreeMap<Seniority, Employee> getEmployeeList() {
-		return employeeList;
-	}
-
-	/**
-	 * @param employeeList the employeeList to set
-	 */
-	public void setEmployeeList(TreeMap<Seniority, Employee> employeeList) {
-		this.employeeList = employeeList;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "EmployeeList [employeeList=" + employeeList + ", seniority=" + seniority + ", employee=" + employee
-				+ ", getEmployeeList()=" + getEmployeeList() + "]";
+	public void getEmployeeList(Seniority seniority, Employee employee) {
+		for(Map.Entry<Seniority, Employee> entry: employeeList.entrySet()) {
+			System.out.println(entry.getKey() + "/" + entry.getValue());
+		}
 	}
 	
 	

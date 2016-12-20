@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Employee {
 	
-	private ArrayList<ParkingSpace> parkingSpaces = new ArrayList<>();
+	private ArrayList<Integer> parkingSpaces = new ArrayList<>();
+	private ParkingSpace parkingSpace = new ParkingSpace();
 	private String employee;
 	
 	public Employee() {
@@ -21,15 +22,11 @@ public class Employee {
 	
 	public Employee(ParkingSpace parkingSpace, String employee) {
 		parkingSpace.setParkingSpace();
+		parkingSpaces.add(parkingSpaces.size(), parkingSpace.getParkingSpace());
 		this.employee = employee;
 	}
 
 	public void setEmployee(String employee) {
 		this.employee = employee;
 	}
-
-	
-	/*public void setParkingSpaceNumber(int parkingSpaceNumber) {
-		this.parkingSpaceNumber = parkingSpaceNumber;
-	}*/
 }
