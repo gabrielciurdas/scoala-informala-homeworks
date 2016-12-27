@@ -1,36 +1,31 @@
 package ro.siit.java5.homework6;
 
+import java.util.ArrayList;
+
 public class Seniority {
 
-	private byte[] seniorityList = new byte[40];
-	private byte seniority;
+	private ArrayList<Integer> seniorityList = new ArrayList<>();
 	
-	public Seniority() {
-		fillSeniorityArray();
-	}
-	
-	private void fillSeniorityArray() {
-		for(byte i = 1; i < seniorityList.length; i++) {
-			seniorityList[i] = i;
+	public void setSeniorityList(ArrayList<Employee> employeeList) {
+		for (Employee e : employeeList) {
+			seniorityList.add(e.getSeniority());
 		}
 	}
-	public byte getSeniorityFromList(byte i) {
-		return seniorityList[i];
-	}
-
-	/**
-	 * @return the senyority
-	 */
-	public byte getSenyority() {
-		return seniority;
-	}
-
-	/**
-	 * @param senyority the senyority to set
-	 */
-	public void setSeniority(byte seniority) {
-		this.seniority = seniority;
+	public Seniority(ArrayList<Employee> employeeList) {
+		setSeniorityList(employeeList);
 	}
 	
+	public Seniority() {
+		seniorityList = new ArrayList<>();
+	}
 	
+	public void displaySeniorityList() {
+		for (Integer i : seniorityList) {
+			System.out.println(i.toString());
+		}
+	}
+	
+	public ArrayList<Integer> getSeniorityList() {
+		return seniorityList;
+	}
 }

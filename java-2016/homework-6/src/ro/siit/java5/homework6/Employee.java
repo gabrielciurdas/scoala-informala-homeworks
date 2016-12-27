@@ -1,32 +1,36 @@
 package ro.siit.java5.homework6;
 
-import java.util.ArrayList;
-
 public class Employee {
-	
-	private ArrayList<Integer> parkingSpaces = new ArrayList<>();
-	private ParkingSpace parkingSpace = new ParkingSpace();
 	private String employee;
+	private JobRole jobRole;
+	private int seniority;
 	
-	public Employee() {
-		employee = null;
+	public Employee(String employee, int seniority, JobRole jobRole) {
+		this.employee = employee;
+		this.seniority = seniority;
+		this.jobRole = jobRole;
+	}
+
+	public Employee(String employee, int seniority) {
+		this.employee = employee;
+		this.seniority = seniority;
 	}
 	
-	public Employee(int i, String string) {
-		employee = null;
+	public Employee(String employee, JobRole jobRole) {
+		this.employee = employee;
+		this.jobRole = jobRole;
 	}
-	
+
 	public Employee(String employee) {
 		this.employee = employee;
 	}
-	
-	public Employee(ParkingSpace parkingSpace, String employee) {
-		parkingSpace.setParkingSpace();
-		parkingSpaces.add(parkingSpaces.size(), parkingSpace.getParkingSpace());
-		this.employee = employee;
+
+	@Override
+	public String toString() {
+		return "Employee [employee=" + employee + ", seniority=" + seniority + "]";
 	}
 
-	public void setEmployee(String employee) {
-		this.employee = employee;
+	public int getSeniority() {
+		return seniority;
 	}
 }
