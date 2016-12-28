@@ -6,17 +6,22 @@ public class Seniority {
 
 	private ArrayList<Integer> seniorityList = new ArrayList<>();
 	
-	public void setSeniorityList(ArrayList<Employee> employeeList) {
-		for (Employee e : employeeList) {
+	public void setSeniorityList(ArrayList<EmployeeDetails> employeeList) {
+		for (EmployeeDetails e : employeeList) {
 			seniorityList.add(e.getSeniority());
 		}
 	}
-	public Seniority(ArrayList<Employee> employeeList) {
+		
+	public Seniority(ArrayList<EmployeeDetails> employeeList) {
 		setSeniorityList(employeeList);
 	}
 	
 	public Seniority() {
 		seniorityList = new ArrayList<>();
+	}
+	
+	public int getSeniorityListSize() {
+		return seniorityList.size();
 	}
 	
 	public void displaySeniorityList() {

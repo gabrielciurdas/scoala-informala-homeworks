@@ -9,25 +9,27 @@ import java.util.Map;
  * @author Gabriel Ciurdas
  *
  */
-public class CompanyManagementSoftware implements Comparable<Employee>{
+public class CompanyManagementSoftware implements Comparable<EmployeeDetails>{
 	
 	private ArrayList<Employee> managers = new ArrayList<>();
 	private ArrayList<Employee> juniorSoftwareDevelopers = new ArrayList<>();
 	private ArrayList<Employee> seniorSoftwareDevelopers = new ArrayList<>();
 	private ArrayList<Employee> juniorSoftwareTesteres = new ArrayList<>();
 	private ArrayList<Employee> seniorSoftwareTesteres = new ArrayList<>();
+	private int index = 1;
 
-	private ArrayList<Employee> employeeList = new ArrayList<>();
-	private Map<Integer, ArrayList<Employee>> employeesOrderedBySeniority = new HashMap<>();
+	private ArrayList<EmployeeDetails> employeeList = new ArrayList<>();
+	
+	private Map<Integer, ArrayList<EmployeeDetails>> employeesOrderedBySeniority = new HashMap<>();
 	private Seniority seniority = new Seniority();
 	
-	public static final Comparator<Employee> SENIORITY_DESCENDING_ORDER = new Comparator<Employee>() {
+	public static final Comparator<EmployeeDetails> SENIORITY_ASCENDING_ORDER = new Comparator<EmployeeDetails>() {
 		
 		@Override
-		public int compare(Employee o2, Employee o1) {
+		public int compare(EmployeeDetails o1, EmployeeDetails o2) {
 			if (o2.getSeniority() == o1.getSeniority()) {
 				return 0;
-			} else if (o2.getSeniority() > o1.getSeniority()) {
+			} else if (o1.getSeniority() > o2.getSeniority()) {
 				return 1;
 			}
 			return -1;
@@ -37,8 +39,8 @@ public class CompanyManagementSoftware implements Comparable<Employee>{
 	private void addEmployeeSortedBySeniority() {
 		seniority = new Seniority(employeeList);
 		for (Integer i : seniority.getSeniorityList()) {
-			ArrayList<Employee> e = new ArrayList<>();
-			for (Employee employee : employeeList) {
+			ArrayList<EmployeeDetails> e = new ArrayList<>();
+			for (EmployeeDetails employee : employeeList) {
 				if(i.equals(employee.getSeniority())) {
 					e.add(employee);
 				}
@@ -49,7 +51,7 @@ public class CompanyManagementSoftware implements Comparable<Employee>{
 	
 	public void printEmployeeSortedBySeniority() {
 		addEmployeeSortedBySeniority();
-		for (Map.Entry<Integer, ArrayList<Employee>> entry : employeesOrderedBySeniority.entrySet())
+		for (Map.Entry<Integer, ArrayList<EmployeeDetails>> entry : employeesOrderedBySeniority.entrySet())
 	    {
 			if(entry.getKey()== 1) {
 				System.out.println("Seniority: " + entry.getKey() + " year -> " + entry.getValue());
@@ -59,36 +61,22 @@ public class CompanyManagementSoftware implements Comparable<Employee>{
 	    }
 	}
 	
-	public void addToEmployeeList(String name, int seniority, JobRole jobRole) {
-		employeeList.add(new Employee(name, seniority, jobRole));
+	public void addToEmployeeList(String name, int seniority, boolean hasParkingSpace, JobRole jobRole) {
+		employeeList.add(new EmployeeDetails(name, seniority, hasParkingSpace, jobRole));
 		if(jobRole.equals(JobRole.MANAGER)) {
-			managers.add(new Employee(name, seniority));
+			managers.add(new Employee(name));
 		}else if(jobRole.equals(JobRole.SENIOR_SOFTWARE_DEVELOPER)) {
-			seniorSoftwareDevelopers.add(new Employee(name, seniority));
+			seniorSoftwareDevelopers.add(new Employee(name));
 		}else if(jobRole.equals(JobRole.SENIOR_SOFTWARE_TESTER)) {
-			seniorSoftwareTesteres.add(new Employee(name, seniority));
+			seniorSoftwareTesteres.add(new Employee(name));
 		}else if(jobRole.equals(JobRole.JUNIOR_SOFTWARE_DEVELOPER)) {
-			juniorSoftwareDevelopers.add(new Employee(name, seniority));
+			juniorSoftwareDevelopers.add(new Employee(name));
 		}else{
-			juniorSoftwareTesteres.add(new Employee(name, seniority));
+			juniorSoftwareTesteres.add(new Employee(name));
 		}
 	}
-	
-	public void addToEmployeeList(String name, int seniority, int parkingSpace, JobRole jobRole) {
-		employeeList.add(new EmployeeWithParkingSpace(name, seniority, parkingSpace, jobRole));
-		if(jobRole.equals(JobRole.MANAGER)) {
-			managers.add(new EmployeeWithParkingSpace(name, seniority, parkingSpace));
-		}else if(jobRole.equals(JobRole.SENIOR_SOFTWARE_DEVELOPER)) {
-			seniorSoftwareDevelopers.add(new EmployeeWithParkingSpace(name, seniority, parkingSpace));
-		}else if(jobRole.equals(JobRole.SENIOR_SOFTWARE_TESTER)) {
-			seniorSoftwareTesteres.add(new EmployeeWithParkingSpace(name, seniority, parkingSpace));
-		}else if(jobRole.equals(JobRole.JUNIOR_SOFTWARE_DEVELOPER)) {
-			juniorSoftwareDevelopers.add(new EmployeeWithParkingSpace(name, seniority, parkingSpace));
-		}else{
-			juniorSoftwareTesteres.add(new EmployeeWithParkingSpace(name, seniority, parkingSpace));
-		}
-	}
-	public ArrayList<Employee> getEmployeeList() {
+
+	public ArrayList<EmployeeDetails> getEmployeeList() {
 		return employeeList;
 	}
 	
@@ -96,7 +84,7 @@ public class CompanyManagementSoftware implements Comparable<Employee>{
 		return juniorSoftwareDevelopers;
 	}
 	
-	public ArrayList<Employee> getJuniorSoftwareTesteres() {
+	public ArrayList<Employee> getJuniorSoftwareTesters() {
 		return juniorSoftwareTesteres;
 	}
 	
@@ -108,22 +96,24 @@ public class CompanyManagementSoftware implements Comparable<Employee>{
 		return seniorSoftwareDevelopers;
 	}
 	
-	public ArrayList<Employee> getSeniorSoftwareTesteres() {
+	public ArrayList<Employee> getSeniorSoftwareTesters() {
 		return seniorSoftwareTesteres;
 	}
 	
-	public void displayEmployees(ArrayList<Employee> employee) {
-		printEmployee(employee);
-	}
-
-	private void printEmployee(ArrayList<Employee> employee) {
-		for (Employee e : employee) {
+	public void displayEmployeeDetails(ArrayList<EmployeeDetails> employee) {
+		for (EmployeeDetails e : employee) {
 			System.out.println(e.toString());
+		}
+	}
+	
+	public void displayEmployees(ArrayList<Employee> employee) {
+		for (Employee e : employee) {
+			System.out.println((index++) + ". " + e.getEmployee());
 		}
 	}
 
 	@Override
-	public int compareTo(Employee o) {
+	public int compareTo(EmployeeDetails o) {
 		return 0;
 	}
 }
