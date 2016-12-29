@@ -2,9 +2,33 @@ package ro.siit.java5.homework6;
 
 import java.util.Collections;
 
-
+/**
+ * The Main class in which a CompanyManagementSoftware object is created in order
+ * to add Employees to lists. The list of employees is sorted by seniority and then 
+ * is displayed for the user to see.
+ * 
+ * @see Employee
+ * @see EmployeeDetails 
+ * @see CompanyManagementSoftware
+ * @see Seniority
+ * @see JobRole
+ * 
+ * @author Gabriel Ciurdas
+ *	<p> 29/12/2016
+ */
 public class Main {
 	
+	/**
+	 * The main method.
+	 * 
+	 * @see Employee
+	 * @see EmployeeDetails 
+	 * @see CompanyManagementSoftware
+	 * @see Seniority
+	 * @see JobRole
+	 * 
+	 * @param args represents the command line arguments.
+	 */
 	public static void main(String[] args) {
 
 		CompanyManagementSoftware companyManagementSoftware = new CompanyManagementSoftware();
@@ -23,7 +47,7 @@ public class Main {
 		System.out.println("[List of employees sorted by seniority in ascending order]: \n");
 		companyManagementSoftware.printEmployeeSortedBySeniority();
 		
-		System.out.println("\n[List of employee names]: ");
+		System.out.println("\n[List of employees names]: ");
 		System.out.println("\nManagers: ");
 		companyManagementSoftware.displayEmployees(companyManagementSoftware.getManagers());
 		System.out.println("\nJunior Software Developers: ");

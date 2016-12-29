@@ -1,13 +1,16 @@
 package test;
 
-import static org.junit.Assert.*;
-
-import org.junit.Assert;
 import org.junit.Test;
 
 import ro.siit.java5.homework6.CompanyManagementSoftware;
 import ro.siit.java5.homework6.JobRole;
 
+/**
+ * This class contains a Unit Test suites for {@link CompanyManagementSoftware} class.
+ * 
+ * @author Gabriel Ciurdas
+ * <p> Date: 29/12/2016
+ */
 public class CompanyManagementSoftwareTest {
 
 	@Test(expected = IllegalArgumentException.class)

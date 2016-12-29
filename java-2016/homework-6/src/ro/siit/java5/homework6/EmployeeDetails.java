@@ -2,6 +2,15 @@ package ro.siit.java5.homework6;
 
 import java.util.ArrayList;
 
+/**
+ * Creates an Employee object with details. The details include the job role, seniority in number of years 
+ * of work experience and information about whether or not it has a parking space allocated.
+ * 
+ * @see Employee
+ * 
+ * @author Gabriel Ciurdas
+ *	<p> Date: 29/12/2016
+ */
 public class EmployeeDetails extends Employee{
 
 	private JobRole jobRole;
