@@ -9,7 +9,7 @@ public class Main {
 
 		CompanyManagementSoftware companyManagementSoftware = new CompanyManagementSoftware();
 		companyManagementSoftware.addToEmployeeList("John Snow", 7, true, JobRole.MANAGER);
-		companyManagementSoftware.addToEmployeeList("Ghita", 1, false, JobRole.MANAGER);
+		companyManagementSoftware.addToEmployeeList("Ghita ", 1, false, JobRole.MANAGER);
 		companyManagementSoftware.addToEmployeeList("Mihai", 6, true, JobRole.SENIOR_SOFTWARE_DEVELOPER);
 		companyManagementSoftware.addToEmployeeList("Alex", 5, false,  JobRole.SENIOR_SOFTWARE_DEVELOPER);
 		companyManagementSoftware.addToEmployeeList("Bogdan", 6, true, JobRole.SENIOR_SOFTWARE_TESTER);
@@ -17,7 +17,6 @@ public class Main {
 		companyManagementSoftware.addToEmployeeList("Alin", 1, false, JobRole.JUNIOR_SOFTWARE_DEVELOPER);
 		companyManagementSoftware.addToEmployeeList("Andrei", 1, true,  JobRole.JUNIOR_SOFTWARE_TESTER);
 		companyManagementSoftware.addToEmployeeList("Carmen", 1, false, JobRole.JUNIOR_SOFTWARE_TESTER);
-		
 		
 		Collections.sort(companyManagementSoftware.getEmployeeList(), CompanyManagementSoftware.SENIORITY_ASCENDING_ORDER);
 		

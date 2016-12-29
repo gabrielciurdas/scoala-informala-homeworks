@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * @author Gabriel Ciurdas
@@ -61,7 +62,9 @@ public class CompanyManagementSoftware implements Comparable<EmployeeDetails>{
 	    }
 	}
 	
-	public void addToEmployeeList(String name, int seniority, boolean hasParkingSpace, JobRole jobRole) {
+	public void addToEmployeeList(String name, int seniority, boolean hasParkingSpace, JobRole jobRole) 
+									throws IllegalArgumentException {
+		
 		employeeList.add(new EmployeeDetails(name, seniority, hasParkingSpace, jobRole));
 		if(jobRole.equals(JobRole.MANAGER)) {
 			managers.add(new Employee(name));
@@ -74,6 +77,7 @@ public class CompanyManagementSoftware implements Comparable<EmployeeDetails>{
 		}else{
 			juniorSoftwareTesteres.add(new Employee(name));
 		}
+		
 	}
 
 	public ArrayList<EmployeeDetails> getEmployeeList() {

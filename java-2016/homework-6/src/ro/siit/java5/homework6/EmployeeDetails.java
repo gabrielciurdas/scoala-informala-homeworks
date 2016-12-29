@@ -10,8 +10,13 @@ public class EmployeeDetails extends Employee{
 	private static int parkingSpace = 0;
 	private boolean hasParkingSpace;
 	
-	public EmployeeDetails(String employee, int seniority, boolean hasParkingSpace, JobRole jobRole) {
+	public EmployeeDetails(String employee, int seniority, boolean hasParkingSpace, JobRole jobRole) 
+								throws IllegalArgumentException {
 		super(employee);
+		
+		validateSeniority(seniority);
+		validateJobRole(jobRole);
+		
 		this.seniority = seniority;
 		this.hasParkingSpace = hasParkingSpace;
 		this.jobRole = jobRole;
@@ -33,6 +38,18 @@ public class EmployeeDetails extends Employee{
 		parkingSpace++;
 	}
 
+	private void validateSeniority(int seniority) throws IllegalArgumentException {
+		if(seniority > 50) {
+			throw new IllegalArgumentException("The employee cannot have more than  50 years of work experience!");
+		}
+	}
+	
+	private void validateJobRole(JobRole jobRole) throws IllegalArgumentException {
+		if (jobRole == null) {
+			throw new IllegalArgumentException("Argument for EmployeeDetails cannot be null.");
+		}
+	}
+	
 	@Override
 	public String toString() {
 		if(hasParkingSpace == true) {
