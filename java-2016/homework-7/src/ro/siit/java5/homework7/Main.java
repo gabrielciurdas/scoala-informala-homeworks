@@ -16,15 +16,17 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		GenericQuickSort genericQuickSort = new GenericQuickSort();
-		Integer [] integerArray = new Integer[] {3,2,1,5, 7, 1 , 2, 3, 6};
-		genericQuickSort.quickSort(integerArray, 0, integerArray.length - 1);
+		Integer [] integerArray = new Integer[] {3, 2, 1, 5, 7, 1 , 2, 3, 6};
+		genericQuickSort.quickSort(integerArray, 0, integerArray.length -1);
 		//displayItems(integerArray);
 		System.out.println(Arrays.toString(integerArray));
+		System.out.println();
 		
 		String [] stringArray = new String [] {"Bogdan", "Alin", "Cristina", "Andreea"};
 		genericQuickSort.quickSort(stringArray, 0, stringArray.length - 1);
 		//displayItems(items);
 		System.out.println(Arrays.toString(stringArray));
+		System.out.println();
 		
 		Movie[] movies= new Movie[] {
 				new Movie("The Dark Knight", 9),

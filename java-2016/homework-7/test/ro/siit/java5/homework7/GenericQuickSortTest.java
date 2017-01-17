@@ -15,13 +15,13 @@ public class GenericQuickSortTest {
 
 	@Test
 	public void sortArrayOfNumbers() {
-		Integer [] array = new Integer []{1, 7, 10, 9, 2, 5, 6, 3, 8, 4, 1, 2};
+		Integer [] array = new Integer []{1, 6, 3, 7, 8, 4, 9, 1, 2};
 		GenericQuickSort gQuickSort = new GenericQuickSort();
 		
 		Integer [] actual = array.clone();
 		gQuickSort.quickSort(actual, 0, actual.length - 1);
 	
-		Integer [] expected = new Integer[] {1, 1, 2, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+		Integer [] expected = new Integer[] {1, 1, 2, 3, 4, 6, 7, 8, 9};
 		
 		Assert.assertArrayEquals(expected, actual);
 	}

@@ -13,12 +13,12 @@ public class GenericQuickSort {
 	 {
 	       Integer i = left, j = right;
 	       T tmp;
-	       Integer pivot = (left + right) / 2;
+	       T pivot = arr[(left + right) / 2];
 	      
 	       while (i <= j) {
-	             while (arr[i].compareTo(arr[pivot]) < 0) 
+	             while (arr[i].compareTo(pivot) < 0) 
 	                   i++;
-	             while (arr[j].compareTo(arr[pivot]) > 0)
+	             while (arr[j].compareTo(pivot) > 0)
 	                   j--;
 	             if (i <= j) {
 	                   tmp = arr[i];
