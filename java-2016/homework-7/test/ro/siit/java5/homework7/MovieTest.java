@@ -4,7 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
+/**
+ * The Unit Tests class for Movie class.
+ * 
+ * @author Gabriel Ciurdas
+ *	<p> Date: 16.01.2017
+ */
 public class MovieTest {
 
 	@Test(expected = IllegalArgumentException.class)
