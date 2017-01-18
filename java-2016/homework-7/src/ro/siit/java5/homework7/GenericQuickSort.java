@@ -32,7 +32,13 @@ public class GenericQuickSort {
 	 }
 	  
 	 /**
-	  * A generic quicksort algorithm. Takes input any type of comparable object.
+	  * A generic quicksort algorithm. Takes as an input any type of comparable object.
+	  * Firstly, it reorders the array so that all elements with values less than the pivot 
+	  * come before the pivot, while all elements with values greater than the pivot come 
+	  * after it (equal values can go either way). After this partitioning, the pivot is
+	  * in its final position.
+	  * Finally, the same method is called recursively and applied to the sub-array of elements
+	  *  with smaller values and separately to the sub-array of elements with greater values.
 	  * 
 	  * @param array is the array of comparable objects.
 	  * @param left is the lower limit of the array.
