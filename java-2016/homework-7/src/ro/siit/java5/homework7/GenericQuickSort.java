@@ -9,21 +9,21 @@ package ro.siit.java5.homework7;
  */
 public class GenericQuickSort {
 	 
-	 private <T extends Comparable<T>> Integer partition(T[] arr, Integer left, Integer right)
+	 private <T extends Comparable<T>> Integer partition(T[] array, Integer left, Integer right)
 	 {
 	       Integer i = left, j = right;
 	       T tmp;
-	       T pivot = arr[(left + right) / 2];
+	       T pivot = array[(left + right) / 2];
 	      
 	       while (i <= j) {
-	             while (arr[i].compareTo(pivot) < 0) 
+	             while (array[i].compareTo(pivot) < 0) 
 	                   i++;
-	             while (arr[j].compareTo(pivot) > 0)
+	             while (array[j].compareTo(pivot) > 0)
 	                   j--;
 	             if (i <= j) {
-	                   tmp = arr[i];
-	                   arr[i] = arr[j];
-	                   arr[j] = tmp;
+	                   tmp = array[i];
+	                   array[i] = array[j];
+	                   array[j] = tmp;
 	                   i++;
 	                   j--;
 	             }
@@ -31,11 +31,18 @@ public class GenericQuickSort {
 	      return i;
 	 }
 	  
-	 public <T extends Comparable<T>> void quickSort(T arr[], Integer left, Integer right) {
-	       Integer index = partition(arr, left, right);
+	 /**
+	  * A generic quicksort algorithm. Takes input any type of comparable object.
+	  * 
+	  * @param array is the array of comparable objects.
+	  * @param left is the lower limit of the array.
+	  * @param right is the higher limit of the array.
+	  */
+	 public <T extends Comparable<T>> void quickSort(T array[], Integer left, Integer right) {
+	       Integer index = partition(array, left, right);
 	       if (left < index - 1)
-	             quickSort(arr, left, index - 1);
+	             quickSort(array, left, index - 1);
 	       if (index < right)
-	             quickSort(arr, index, right);
+	             quickSort(array, index, right);
 	 }
 }

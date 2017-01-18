@@ -11,6 +11,12 @@ public class Movie implements Comparable<Movie>{
 	private String title = "";
 	private double ratingIMDB = 0;
 
+	/**
+	 * The Constructor for Movie object.
+	 * 
+	 * @param title is the title of the movie.
+	 * @param ratingIMDB is the rating of the Movie, from 1 to 10.
+	 */
 	public Movie(String title, double ratingIMDB) {
 			validateTitle(title);
 			validateRating(ratingIMDB);
