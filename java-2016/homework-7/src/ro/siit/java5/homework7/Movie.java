@@ -40,7 +40,7 @@ public class Movie implements Comparable<Movie>{
 		if(title.length() > 0) {
 			this.title = title;
 		} else {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Movie title cannot be empty.");
 		}
 	}
 	
@@ -48,7 +48,7 @@ public class Movie implements Comparable<Movie>{
 		if(ratingIMDB >= 1 && ratingIMDB <= 10) {
 			this.ratingIMDB = ratingIMDB;
 		} else {
-			throw new IllegalArgumentException("Movie can only be rated between 1 and 10");
+			throw new IllegalArgumentException("Movie can only be rated between 1 and 10.");
 		}
 	}
 }

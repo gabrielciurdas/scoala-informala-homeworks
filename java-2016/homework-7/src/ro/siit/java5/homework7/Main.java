@@ -2,7 +2,7 @@ package ro.siit.java5.homework7;
 import java.util.Arrays;
 
 /**
- * The Main Class for the generic bubblesort algorithm.
+ * The Main Class for the generic quicksort algorithm.
  * 
  * @author Gabriel Ciurdas
  * <p> Date: 16.01.2017
@@ -22,7 +22,7 @@ public class Main {
 		System.out.println(Arrays.toString(integerArray));
 		System.out.println();
 		
-		String [] stringArray = new String [] {"Bogdan", "Alin", "Cristina", "Andreea"};
+		String [] stringArray = new String [] {"Bogdan", "Mihai", "Alin", "Dan", "Cristina", "Andreea"};
 		genericQuickSort.quickSort(stringArray, 0, stringArray.length - 1);
 		//displayItems(items);
 		System.out.println(Arrays.toString(stringArray));

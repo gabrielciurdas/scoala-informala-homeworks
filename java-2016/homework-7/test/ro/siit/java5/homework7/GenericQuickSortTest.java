@@ -1,7 +1,5 @@
 package ro.siit.java5.homework7;
 
-import java.util.Arrays;
-
 import org.junit.Assert;
 import org.junit.Test;
 
