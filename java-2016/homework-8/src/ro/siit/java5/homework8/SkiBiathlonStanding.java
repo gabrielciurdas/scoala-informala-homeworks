@@ -18,14 +18,29 @@ public class SkiBiathlonStanding {
 		this.shootingRange = shootingRange;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "SkiBiathlonStanding [athleteNumber=" + athleteNumber + ", name=" + name + ", countryCode=" + countryCode
 				+ ", timeStanding=" + timeStanding + ", shootingRange=" + Arrays.toString(shootingRange) + "]";
 	}
 	
+	public int getAthleteNumber() {
+		return athleteNumber;
+	}
 	
+	public String getName() {
+		return name;
+	}
+	
+	public String getCountryCode() {
+		return countryCode;
+	}
+	
+	public String[] getShootingRange() {
+		return shootingRange;
+	}
+	
+	public String getTimeStanding() {
+		return timeStanding;
+	}
 }

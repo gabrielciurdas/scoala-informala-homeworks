@@ -3,18 +3,19 @@ package ro.siit.java5.homework8;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.SimpleTimeZone;
 
 public class Main {
 	public static void main(String[] args) {
 		
-		try(BufferedReader br = new BufferedReader(new FileReader("skiBiathlon.csv")); 
-				CSVSkiBiathlonReader reader = new CSVSkiBiathlonReader(br);) {
-			List<SkiBiathlonStanding> skiBiathlonStandings = reader.readSkiBiathlonStanding();
-			System.out.println(skiBiathlonStandings.toString());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		StandingCalculator standingCalculator = new StandingCalculator();
+		standingCalculator.calculateStanding();
+		Collections.sort(standingCalculator.getOrderedStandings(), StandingCalculator.STANDING_ASCENDING_ORDER);
+		standingCalculator.displayStandings();
 	}
 }
