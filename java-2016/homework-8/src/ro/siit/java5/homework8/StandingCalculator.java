@@ -13,7 +13,7 @@ import java.util.List;
 
 public class StandingCalculator implements Comparable<SkiBiathlonStanding> {
 	
-	private List<SkiBiathlonStanding> orderedStandings = new ArrayList<>();
+	private List <SkiBiathlonStanding> orderedStandings = new ArrayList<>();
 	
 	public static final Comparator<SkiBiathlonStanding> STANDING_ASCENDING_ORDER = new Comparator<SkiBiathlonStanding>() {
 		
@@ -27,59 +27,70 @@ public class StandingCalculator implements Comparable<SkiBiathlonStanding> {
 		return orderedStandings;
 	}
 	
-	public void displayStandings() {
-		System.out.println("Winners: \n");
-		for (int i = 0; i < 3; i++) {
-			System.out.println(i + 1 + ". " + orderedStandings.get(i).toString());
-		}
-		if(orderedStandings.size() > 3) {
-			System.out.println("-----------------------------------------------------------------"
-					+ "--------------------------------------------------------------------------");
-			for(int j = 3; j < orderedStandings.size() - 1 ; j++) {
-				System.out.println(j + 1 + ". " + orderedStandings.get(j).toString());
-			}
-		}
-	}
-	
 	public void calculateStanding() {
+		generateWinnersList();
+	}
+
+	private void generateWinnersList() {
 		try(BufferedReader br = new BufferedReader(new FileReader("skiBiathlon.csv")); 
 				CSVSkiBiathlonReader reader = new CSVSkiBiathlonReader(br);) {
-			List<SkiBiathlonStanding> skiBiathlonStandings = reader.readSkiBiathlonStanding();
-			
-			int penalty = 0;
-			String timeResult = "";
-			Date date = new Date();
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(date);
-			int PENALTY = 10;
-			int minute = 0;
-			int second = 0;
-			
-			for (SkiBiathlonStanding standing : skiBiathlonStandings) {
-				for (String s : standing.getShootingRange()) {
-					timeResult = standing.getTimeStanding();
-					minute = Integer.parseInt(timeResult.substring(0, 2));
-					second = Integer.parseInt(timeResult.substring(3, 5));
-					for (Character c : s.toCharArray()) {
-						if(c == 'o') {
-							penalty += PENALTY;
-						}
-					}
-				}
-				cal.set(Calendar.MINUTE, minute);
-				cal.set(Calendar.SECOND, second + penalty);
-				String finalTimeStanding = String.valueOf(cal.get(Calendar.MINUTE)) + ":" + String.valueOf(cal.get(Calendar.SECOND)) + ":00";
-				orderedStandings.add(new SkiBiathlonStanding(standing.getAthleteNumber(), standing.getName(),
-						standing.getCountryCode(), finalTimeStanding, standing.getShootingRange()));
-				minute = 0;
-				second = 0;
-				penalty = 0;
-			}
+			identifyWinners(reader);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
+	private void identifyWinners(CSVSkiBiathlonReader reader) throws IOException {
+		List<SkiBiathlonStanding> skiBiathlonStandings = reader.readSkiBiathlonStanding();
+		
+		String timeResult = "";
+		Date date = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		int PENALTY = 10;
+		
+		for (SkiBiathlonStanding standing : skiBiathlonStandings) {
+			Integer penalty = 0;
+			int minute = 0;
+			int second = 0;
+			for (String s : standing.getShootingRange()) {
+				timeResult = standing.getTimeStanding();
+				minute = Integer.parseInt(timeResult.substring(0, 2));
+				second = Integer.parseInt(timeResult.substring(3, 5));
+				penalty = calculatePenalty(PENALTY, penalty, s);
+			}
+			cal.set(Calendar.MINUTE, minute);
+			cal.set(Calendar.SECOND, second + penalty);
+			updateStanding(cal, standing, penalty);
+			
+			minute = 0;
+			second = 0;
+			penalty = 0;
+		}
+	}
+
+	private Integer calculatePenalty(int PENALTY, Integer penalty, String s) {
+		for (Character c : s.toCharArray()) {
+			if(c == 'o') {
+				penalty += PENALTY;
+			}
+		}
+		return penalty;
+	}
+
+	private void updateStanding(Calendar cal, SkiBiathlonStanding standing, Integer penalty) {
+		String finalTimeStanding = String.valueOf(cal.get(Calendar.MINUTE)) + ":" + String.valueOf(cal.get(Calendar.SECOND))
+				 + " (" + standing.getTimeStanding().substring(0, 5) + " + " + String.valueOf(penalty) +")";
+		
+		orderedStandings.add(new SkiBiathlonStanding(standing.getAthleteNumber(), standing.getName(),
+				standing.getCountryCode(), finalTimeStanding, standing.getShootingRange()));
+	}
+	public void displayWinners() {
+		System.out.println("Winner - " + orderedStandings.get(0).getName() + " " + orderedStandings.get(0).getTimeStanding());
+		System.out.println("Runner-up - " + orderedStandings.get(1).getName() + " " + orderedStandings.get(1).getTimeStanding());
+		System.out.println("Third place - " + orderedStandings.get(2).getName() + " " + orderedStandings.get(2).getTimeStanding());
+	}
+	
 	@Override
 	public int compareTo(SkiBiathlonStanding o) {
 		// TODO Auto-generated method stub
