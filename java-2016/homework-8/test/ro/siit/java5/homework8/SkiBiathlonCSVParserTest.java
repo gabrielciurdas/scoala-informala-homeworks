@@ -1,3 +1,4 @@
+package ro.siit.java5.homework8;
 import org.junit.Assert;
 import org.junit.Test;
 
