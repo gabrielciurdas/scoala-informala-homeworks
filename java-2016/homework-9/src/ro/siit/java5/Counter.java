@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class Counter{
     private Random random = new Random();
-    private int numberOfAttendees = 100 + random.nextInt(400);
+    private int numberOfAttendees = 100 + random.nextInt(400);  //at least 100 Festival Attendees
 
     public int getNumberOfAttendees() {
         return numberOfAttendees;

@@ -13,8 +13,6 @@ public class Main {
 
         Random random = new Random();
         FestivalGate gate = new FestivalGate();
-        //TicketType ticketType = new TicketType();// this should be enum value randomly generated.
-        //FestivalAttendeeThread festivalAttendee = new FestivalAttendeeThread(ticketType, gate);
         FestivalStatisticsThread statsThread = new FestivalStatisticsThread(gate);
 
         System.out.println("Number of people on queue : " + gate.getNumberOfAttendees());

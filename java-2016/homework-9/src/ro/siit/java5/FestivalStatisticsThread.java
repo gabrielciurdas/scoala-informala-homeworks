@@ -1,5 +1,6 @@
 package ro.siit.java5;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +14,7 @@ public class FestivalStatisticsThread extends Thread {
     private FestivalGate gate = new FestivalGate();
     private Map<LinkedBlockingQueue<TicketType>, Integer> statistics = new HashMap<>();
     private int numberOfAttendees = 0;
+    private ArrayList<Integer> seconds = new ArrayList<>();  //variable used for test purposes
 
     public FestivalStatisticsThread(FestivalGate gate) {
         this.gate = gate;
@@ -77,8 +79,9 @@ public class FestivalStatisticsThread extends Thread {
             }
         }
         Calendar calendar = Calendar.getInstance();
-        String time = (calendar.get(Calendar.HOUR) + ":" + calendar.get(Calendar.MINUTE)+ ":"
+        String time = (calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE)+ ":"
                 + calendar.get(Calendar.SECOND));
+        seconds.add(calendar.get(Calendar.SECOND));
 
         statistics = String.format("Time: %s\n" + "  Number of tickets validated: " +
                 "%d\n   People with free pass: " +
@@ -93,5 +96,13 @@ public class FestivalStatisticsThread extends Thread {
 
     public void setNumberOfAttendees(int numberOfAttendees) {
         this.numberOfAttendees = numberOfAttendees;
+    }
+
+    public int getNumberOfAttendees() {
+        return numberOfAttendees;
+    }
+
+    public int getSeconds(int index) {
+        return seconds.get(index);
     }
 }

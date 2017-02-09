@@ -9,16 +9,11 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class FestivalGate extends Counter {
 
-    private Ticket[] tickets = Ticket.values();
     private LinkedBlockingQueue<TicketType> queue = new LinkedBlockingQueue<>();
-
-
-
     private List<String> festivalStatistics = new ArrayList<>();
 
     public FestivalGate() {
         super();
-        tickets = Ticket.values();
         queue = new LinkedBlockingQueue<>();
     }
 
@@ -47,7 +42,7 @@ public class FestivalGate extends Counter {
             queue.add(ticketType);
             System.out.println("#" + queue.size() + " validated");
         } else {
-            System.out.println("Ticket not valid!");
+            throw new IllegalArgumentException("Invalid ticket!");
         }
     }
 
@@ -63,7 +58,7 @@ public class FestivalGate extends Counter {
         boolean valid = false;
         for(Ticket t: Ticket.values()) {
             if(ticket.equals(t)) {
-                return true;
+                valid = true;
             }
         }
         return valid;

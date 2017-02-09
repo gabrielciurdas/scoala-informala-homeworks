@@ -16,6 +16,12 @@ public class TicketType {
         tickets = Ticket.values();
         ticket = tickets[random.nextInt(5)];
     }
+    public TicketType(Ticket ticket) {
+        random = new Random();
+        tickets = Ticket.values();
+        this.ticket = ticket;
+    }
+
     public Ticket getTicket() {
         return ticket;
     }
