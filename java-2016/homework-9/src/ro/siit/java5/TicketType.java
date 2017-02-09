@@ -7,11 +7,16 @@ import java.util.Random;
  */
 public class TicketType {
 
-    Random random = new Random();
-    Ticket[] tickets = Ticket.values();
-    Ticket ticketType = tickets[random.nextInt(5)];
+    Random random;
+    Ticket[] tickets;
+    Ticket ticket;
 
-    public Ticket getTicketType() {
-        return ticketType;
+    public TicketType() {
+        random = new Random();
+        tickets = Ticket.values();
+        ticket = tickets[random.nextInt(5)];
+    }
+    public Ticket getTicket() {
+        return ticket;
     }
 }
