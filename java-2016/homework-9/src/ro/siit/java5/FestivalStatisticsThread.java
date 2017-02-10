@@ -105,4 +105,8 @@ public class FestivalStatisticsThread extends Thread {
     public int getSeconds(int index) {
         return seconds.get(index);
     }
+
+    public ArrayList<Integer> getSecondsList() {
+        return seconds;
+    }
 }
