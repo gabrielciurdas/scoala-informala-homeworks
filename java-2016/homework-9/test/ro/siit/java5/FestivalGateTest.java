@@ -3,9 +3,7 @@ package ro.siit.java5;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -41,8 +39,8 @@ public class FestivalGateTest {
         FestivalGate gate = new FestivalGate();
         FestivalStatisticsThread statsThread = new FestivalStatisticsThread(gate);
         FestivalAttendeeThread[] festivalAttendeeThreads =
-                new FestivalAttendeeThread[203];
-        statsThread.setNumberOfAttendees(203);
+                new FestivalAttendeeThread[122];
+        statsThread.setNumberOfAttendees(122);
         statsThread.start();
 
         for (int i = 0; i < festivalAttendeeThreads.length; i++) {
@@ -51,32 +49,19 @@ public class FestivalGateTest {
             festivalAttendeeThreads[i].sleep(100);
         }
         for (FestivalAttendeeThread fa : festivalAttendeeThreads) {
-            fa.join();
+                fa.join();
         }
-        ArrayList<Integer> actualSecondsPassed = statsThread.getSecondsList();
-        ArrayList<Integer> expectedSecondsPassed = new ArrayList<>();
-        //Calendar and Date objects are used in order to remove a bug
-        //where expectedSecondsPassed array tried for example to add
-        //second 3 - 5 which gives a negative number and therefore test fails.
-        Date date = new Date();
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        for(int i = 0; i < actualSecondsPassed.size(); i++) {
-            if(i > 0) {
-                calendar.set(Calendar.SECOND, actualSecondsPassed.get(i -1) - 5);
-                expectedSecondsPassed.add(calendar.get(Calendar.SECOND));
-            }
+        gate.displayStatistics();
+        TimeUnit.SECONDS.sleep(5);
+        int expectedSecondsPassed1 = calendar.get(Calendar.SECOND);
+        int actualSecondsPassed1 = statsThread.getSeconds(gate.getFestivalStatistics().size()-1);
+        TimeUnit.SECONDS.sleep(5);
+        int expectedSecondsPassed2 = calendar.get(Calendar.SECOND);
+        int actualSecondsPassed2 = statsThread.getSeconds(gate.getFestivalStatistics().size()-2);
 
-        }
-        //The value of these two arrays represents the seconds at which
-        //the gate generated statistics. The for loop checks if the
-        //current value in seconds is equal to the current value -5 seconds
-        //from the comparing array.
-        for(int i = 0; i < expectedSecondsPassed.size(); i++) {
-            if(i > 0) {
-                Assert.assertEquals(expectedSecondsPassed.get(i), actualSecondsPassed.get(i - 1));
-            }
-        }
+        Assert.assertEquals(expectedSecondsPassed1, actualSecondsPassed1);
+        Assert.assertEquals(expectedSecondsPassed2, actualSecondsPassed2);
     }
 
     @Test
