@@ -6,16 +6,18 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 /**
- * Created by Gabi on 2/9/2017.
+ * This class contains the Unit Tests for FestivalGate class.
+ *
+ * @author Gabriel Ciurdaș
+ *         <p> Created on 09/03/2017. </p>
  */
 public class FestivalGateTest {
 
     @Test
     public void gateCorrectlyGeneratesStatisticsEveryFiveSeconds_ForAGivenNumberOfAttendeesAndSleepTime()
-            throws InterruptedException{
+            throws InterruptedException {
         FestivalGate gate = new FestivalGate();
         FestivalStatisticsThread statsThread = new FestivalStatisticsThread(gate);
         FestivalAttendeeThread[] festivalAttendeeThreads =
@@ -61,9 +63,9 @@ public class FestivalGateTest {
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        for(int i = 0; i < actualSecondsPassed.size(); i++) {
-            if(i > 0) {
-                calendar.set(Calendar.SECOND, actualSecondsPassed.get(i -1) - 5);
+        for (int i = 0; i < actualSecondsPassed.size(); i++) {
+            if (i > 0) {
+                calendar.set(Calendar.SECOND, actualSecondsPassed.get(i - 1) - 5);
                 expectedSecondsPassed.add(calendar.get(Calendar.SECOND));
             }
 
@@ -72,16 +74,16 @@ public class FestivalGateTest {
         //the gate generated statistics. The for loop checks if the
         //current value in seconds is equal to the current value -5 seconds
         //from the comparing array.
-        for(int i = 0; i < expectedSecondsPassed.size(); i++) {
-            if(i > 0) {
+        for (int i = 0; i < expectedSecondsPassed.size(); i++) {
+            if (i > 0) {
                 Assert.assertEquals(expectedSecondsPassed.get(i), actualSecondsPassed.get(i - 1));
             }
         }
     }
 
     @Test
-    public void allValidTicketsAreValidated_AndIncludedInStatistics()
-            throws InterruptedException{
+    public void allValidTicketsAreValidated()
+            throws InterruptedException {
         FestivalGate gate = new FestivalGate();
         FestivalStatisticsThread statsThread = new FestivalStatisticsThread(gate);
         FestivalAttendeeThread[] festivalAttendeeThreads =
@@ -101,6 +103,7 @@ public class FestivalGateTest {
         int actualProcessedNumberOfAttendees = statsThread.getNumberOfAttendees();
         Assert.assertEquals(expectedProcessedNumberOfAttendees, actualProcessedNumberOfAttendees);
     }
+
     @Test(expected = IllegalArgumentException.class)
     public void whenInvalidTicketIsUsed_IllegalArgumentExceptionIsThrown()
             throws InterruptedException {

@@ -7,21 +7,40 @@ import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * Created by Gabi on 2/3/2017.
+ * This class represents a Festival statistics generator for the
+ * use of a Festival Gate simulation. It shares a common resource
+ * with FestivalAttendeeThread, the FestivalGate object. Also, it
+ * keeps a record of the generated statistics, every five seconds.
+ *
+ * @author Gabriel Ciurdaș
+ *         <p> Created on 03/02/2017. </p>
  */
 public class FestivalStatisticsThread extends Thread {
 
     private FestivalGate gate = new FestivalGate();
     private Map<LinkedBlockingQueue<TicketType>, Integer> statistics = new HashMap<>();
     private int numberOfAttendees = 0;
-    private ArrayList<Integer> seconds = new ArrayList<>();  //variable used for test purposes
+    private ArrayList<Integer> seconds = new ArrayList<>();  //variable used for Unit Test purposes.
 
+    /**
+     * A constructor with one parameter for a FestivalStatisticsThread object.
+     *
+     * @param gate is the FestivalGate instance for the FestivalStatisticsThread
+     *             to be constructed with.
+     */
     public FestivalStatisticsThread(FestivalGate gate) {
         this.gate = gate;
     }
 
+    /**
+     * This method generates statistics every five seconds from a queue list
+     * of Festival Attendees, represented by FestivalAttendeeThread instances.
+     * The overrided method of a Thread object calls the statistics
+     * instance of a Map to add the queue list as key and the queue size as value.
+     * Each Ticket type is counted and then the statistics is added in an array
+     * of String, which are stored in gate - the FestivalGate instance.
+     */
     public void run() {
-        if (gate.getQueue().size() < 1) {
             statistics.put(gate.getQueue(), gate.getQueue().size());
             try {
                 boolean done = false;
@@ -38,11 +57,6 @@ public class FestivalStatisticsThread extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            gate.displayStatistics();
-            System.out.println("Total number of tickets processed : " + gate.getQueue().size());
-        } else {
-            System.out.println("Waiting for attendees..");
-        }
     }
 
     private void countPasses() throws InterruptedException {
@@ -100,10 +114,6 @@ public class FestivalStatisticsThread extends Thread {
 
     public int getNumberOfAttendees() {
         return numberOfAttendees;
-    }
-
-    public int getSeconds(int index) {
-        return seconds.get(index);
     }
 
     public ArrayList<Integer> getSecondsList() {
