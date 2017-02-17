@@ -1,4 +1,4 @@
-package ro.siit.it4kids;
+package ro.siit.homework10;
 
 public class Main {
 
