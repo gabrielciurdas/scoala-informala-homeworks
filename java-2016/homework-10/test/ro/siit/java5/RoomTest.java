@@ -1,7 +1,6 @@
 package ro.siit.java5;
 
 import org.junit.Test;
-
 /**
  * Created by Gabi on 2/20/2017.
  */
@@ -21,16 +20,16 @@ public class RoomTest {
         AccomodationFairRelationDAO afr = new AccomodationFairRelationDAO();
 
         int accomodationIndex = ad.getAll().size() - 1;
-        int accomodationFairRelation = afr.getAll().size() + 4;
+        int accomodationFairRelationIndex = afr.getAll().size() ;
 
         afr.add(new AccomodationFairRelation(ad.getAll().get(accomodationIndex).getId(),
-                rf.getAll().get(accomodationFairRelation - 4).getId()));
+                rf.getAll().get(accomodationFairRelationIndex - Season.WINTER.ordinal() + 1).getId()));
         afr.add(new AccomodationFairRelation(ad.getAll().get(accomodationIndex).getId(),
-                rf.getAll().get(accomodationFairRelation - 3).getId()));
+                rf.getAll().get(accomodationFairRelationIndex - Season.AUTUMN.ordinal() + 1).getId()));
         afr.add(new AccomodationFairRelation(ad.getAll().get(accomodationIndex).getId(),
-                rf.getAll().get(accomodationFairRelation - 2).getId()));
+                rf.getAll().get(accomodationFairRelationIndex - Season.SUMMER.ordinal() + 1).getId()));
         afr.add(new AccomodationFairRelation(ad.getAll().get(accomodationIndex).getId(),
-                rf.getAll().get(accomodationFairRelation - 1).getId()));
+                rf.getAll().get(accomodationFairRelationIndex - Season.SPRING.ordinal() + 1).getId()));
     }
 
     @Test
