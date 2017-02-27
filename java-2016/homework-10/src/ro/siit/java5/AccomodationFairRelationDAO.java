@@ -1,21 +1,38 @@
 package ro.siit.java5;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Gabi on 2/25/2017.
+ * This class is a data accsess object for an AccomodationFairRelation object.
+ *
+ * @see Accomodation
+ * @see RoomFair
+ * <p>
+ * Created by Gabriel Ciurdas on 2/20/2017.
  */
 public class AccomodationFairRelationDAO {
 
+    /**
+     * This method writes an accomodation fair relation object in the specified database
+     * by creating a connection with a PostgreSQL server and using a query.
+     *
+     * @param accomodationFairRelation is the accomodation fair relation
+     *                                 to be written in the specified database.
+     */
     public void add(AccomodationFairRelation accomodationFairRelation) {
         try (
-                Connection conn = newConnection("postgresql", "localhost", "5432", "BookingApp", "postgres", "aNewPa55w0rd");
+                Connection conn = newConnection("postgresql",
+                        "localhost",
+                        "5432",
+                        "BookingApp",
+                        "postgres",
+                        "aNewPa55w0rd");
                 PreparedStatement stm =
-                        conn.prepareStatement("INSERT INTO accomodation_fair_relation(id_accomodation, id_room_fair) values(?,?)");
-        ){
+                        conn.prepareStatement("INSERT INTO accomodation_fair_relation(id_accomodation, id_room_fair)" +
+                                " values(?,?)");
+        ) {
 
             stm.setInt(1, accomodationFairRelation.getAccomodationId());
             stm.setInt(2, accomodationFairRelation.getRoomFairId());
@@ -27,14 +44,27 @@ public class AccomodationFairRelationDAO {
         }
     }
 
+    /**
+     * This method retrieves a list of accomodation fair relation objects
+     * from the specified database by creating a connection with a PostgreSQL server
+     * and using a query.
+     *
+     * @return the list of accomodation fair relation objects.
+     */
     public List<AccomodationFairRelation> getAll() {
         List<AccomodationFairRelation> result = new LinkedList<>();
 
         try (
-                Connection conn = newConnection("postgresql", "localhost", "5432", "BookingApp", "postgres", "aNewPa55w0rd");
+                Connection conn = newConnection("postgresql",
+                        "localhost",
+                        "5432",
+                        "BookingApp",
+                        "postgres",
+                        "aNewPa55w0rd");
                 Statement stm = conn.createStatement();
-                ResultSet rs = stm.executeQuery("select id, id_accomodation, id_room_fair from accomodation_fair_relation");
-        ){
+                ResultSet rs = stm.executeQuery("select id, id_accomodation, id_room_fair" +
+                        " from accomodation_fair_relation");
+        ) {
 
             while (rs.next()) {
                 AccomodationFairRelation afr = new AccomodationFairRelation();
@@ -52,17 +82,27 @@ public class AccomodationFairRelationDAO {
         return result;
     }
 
+    /**
+     * This method displays a list of accomodation fair relation objects
+     * from the specified database by creating a connection with a PostgreSQL server
+     * and using a query.
+     */
     public List<AccomodationFairRelation> printAll() {
         List<AccomodationFairRelation> result = new LinkedList<>();
 
         try (
-                Connection conn = newConnection("postgresql", "localhost", "5432", "BookingApp", "postgres", "aNewPa55w0rd");
+                Connection conn = newConnection("postgresql",
+                        "localhost",
+                        "5432",
+                        "BookingApp",
+                        "postgres",
+                        "aNewPa55w0rd");
                 Statement stm = conn.createStatement();
                 ResultSet rs = stm.executeQuery("SELECT * FROM accomodation_fair_relation " +
-                                "JOIN accomodation ON accomodation.id = accomodation_fair_relation.id_accomodation " +
-                                "JOIN room_fair ON room_fair.id = accomodation_fair_relation.id_room_fair;" );
-        ){
-            int count =0;
+                        "JOIN accomodation ON accomodation.id = accomodation_fair_relation.id_accomodation " +
+                        "JOIN room_fair ON room_fair.id = accomodation_fair_relation.id_room_fair;");
+        ) {
+            int count = 0;
 
             while (rs.next()) {
                 System.out.println("[Room Type] " + rs.getString("type") + ": price for " +

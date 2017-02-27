@@ -5,15 +5,30 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Gabi on 2/20/2017.
+ * This class is a data accsess object for a RoomFair object.
+ *
+ * @see RoomFair
+ * <p>
+ * Created by Gabriel Ciurdas on 2/20/2017.
  */
 public class RoomFairDAO {
+    /**
+     * This method writes a room fair object in the specified database
+     * by creating a connection with a PostgreSQL server and using a query.
+     *
+     * @param roomFair is the room fair to be written in the specified database.
+     */
     public void add(RoomFair roomFair) {
         try (
-                Connection conn = newConnection("postgresql", "localhost", "5432", "BookingApp", "postgres", "aNewPa55w0rd");
+                Connection conn = newConnection("postgresql",
+                        "localhost",
+                        "5432",
+                        "BookingApp",
+                        "postgres",
+                        "aNewPa55w0rd");
                 PreparedStatement stm =
                         conn.prepareStatement("INSERT INTO room_fair(value, season) values(?,?)");
-        ){
+        ) {
 
             stm.setDouble(1, roomFair.getValue());
             stm.setString(2, roomFair.getSeason().name());
@@ -25,15 +40,26 @@ public class RoomFairDAO {
         }
     }
 
+    /**
+     * This method retrieves a list of room fair objects from the specified database
+     * by creating a connection with a PostgreSQL server and using a query.
+     *
+     * @return the list of room fair objects.
+     */
     public List<RoomFair> getAll() {
         List<RoomFair> result = new LinkedList<>();
 
         try (
-                Connection conn = newConnection("postgresql", "localhost", "5432", "BookingApp", "postgres", "aNewPa55w0rd");
+                Connection conn = newConnection("postgresql",
+                        "localhost",
+                        "5432",
+                        "BookingApp",
+                        "postgres",
+                        "aNewPa55w0rd");
                 Statement stm = conn.createStatement();
                 ResultSet rs = stm.executeQuery("select id, value, season from room_fair");
 
-        ){
+        ) {
 
             while (rs.next()) {
                 RoomFair roomFair = new RoomFair();

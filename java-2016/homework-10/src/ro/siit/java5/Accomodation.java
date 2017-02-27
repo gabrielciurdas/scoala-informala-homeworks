@@ -1,7 +1,12 @@
 package ro.siit.java5;
 
 /**
- * Created by Gabi on 2/20/2017.
+ * This class simulates an accomodation.
+ *
+ * @see RoomType
+ * @see BedType
+ * <p>
+ * Created by Gabriel Ciurdas on 2/20/2017.
  */
 public class Accomodation {
     private int id;
@@ -10,6 +15,9 @@ public class Accomodation {
     private int maxGuests;
     private String description;
 
+    /**
+     * A default constructor for an Accomodation object.
+     */
     public Accomodation() {
         id = 0;
         type = RoomType.SINGLE;
@@ -18,6 +26,14 @@ public class Accomodation {
         description = "";
     }
 
+    /**
+     * A constructor with four parameters for an Accomodation object.
+     *
+     * @param type        is the type of the room which is a constant from RoomType enum.
+     * @param bedType     is the type of the bed which is a constant from BedType enum.
+     * @param maxGuests   is the maximum number of guests allowed this type of room.
+     * @param description is a description of the accomodation.
+     */
     public Accomodation(RoomType type, BedType bedType, int maxGuests, String description) {
         this.type = type;
         this.bedType = bedType;

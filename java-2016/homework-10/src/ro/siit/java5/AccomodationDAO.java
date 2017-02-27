@@ -1,42 +1,69 @@
 package ro.siit.java5;
 
 import java.sql.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Gabi on 2/20/2017.
+ * This class is a data accsess object for an Accomodation object.
+ *
+ * @see Accomodation
+ * <p>
+ * Created by Gabriel Ciurdas on 2/20/2017.
  */
 public class AccomodationDAO {
 
+    /**
+     * This method writes an accomodation object in the specified database
+     * by creating a connection with a PostgreSQL server and using a query.
+     *
+     * @param accomodation is the accomodation to be written in the specified database.
+     */
     public void add(Accomodation accomodation) {
         try (
-                Connection conn = newConnection("postgresql", "localhost", "5432", "BookingApp", "postgres", "aNewPa55w0rd");
+                Connection conn = newConnection("postgresql",
+                        "localhost",
+                        "5432",
+                        "BookingApp",
+                        "postgres",
+                        "aNewPa55w0rd");
                 PreparedStatement stm =
-			conn.prepareStatement("INSERT INTO accomodation(type, bed_type, max_guests, description) values(?,?,?,?)");
-			){
+                        conn.prepareStatement("INSERT INTO accomodation(type, bed_type, max_guests, description)" +
+                                " values(?,?,?,?)");
+        ) {
 
-			stm.setString(1, accomodation.getType().name());
-			stm.setString(2, accomodation.getBedType().name());
-			stm.setInt(3, accomodation.getMaxGuests());
-			stm.setString(4, accomodation.getDescription());
+            stm.setString(1, accomodation.getType().name());
+            stm.setString(2, accomodation.getBedType().name());
+            stm.setInt(3, accomodation.getMaxGuests());
+            stm.setString(4, accomodation.getDescription());
 
-			stm.executeUpdate();
+            stm.executeUpdate();
 
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
+    /**
+     * This method retrieves a list of accomodation objects from the specified database
+     * by creating a connection with a PostgreSQL server and using a query.
+     *
+     * @return the list of accomodation objects.
+     */
     public List<Accomodation> getAll() {
-        List<Accomodation> result = new LinkedList<>();
+        List<Accomodation> result = new ArrayList<>();
 
         try (
-                Connection conn = newConnection("postgresql", "localhost", "5432", "BookingApp", "postgres", "aNewPa55w0rd");
+                Connection conn = newConnection("postgresql",
+                        "localhost",
+                        "5432",
+                        "BookingApp",
+                        "postgres"
+                        , "aNewPa55w0rd");
                 Statement stm = conn.createStatement();
-                ResultSet rs = stm.executeQuery("select id, type, bed_type, max_guests, description from accomodation");
-
-        ){
+                ResultSet rs = stm.executeQuery("select id, type, bed_type, max_guests, description" +
+                        " from accomodation");
+        ) {
 
             while (rs.next()) {
                 Accomodation accomodation = new Accomodation();
@@ -67,7 +94,7 @@ public class AccomodationDAO {
     }
 
     private static Connection newConnection(String type, String host, String port, String dbName, String user,
-                                                String pw) {
+                                            String pw) {
 
         loadDriver();
         DriverManager.setLoginTimeout(60); // wait 1 min; optional: DB may be
