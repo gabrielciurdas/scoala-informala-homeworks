@@ -32,11 +32,11 @@ public class AgeCalculator {
         return currentDay;
     }
 
-    public void calculateAge(LocalDate birthday, LocalDate currentDay) {
-        System.out.println("Age in days: " + ChronoUnit.DAYS.between(birthday, currentDay));
+    public String calculateAge(LocalDate birthday, LocalDate currentDay) {
+    	return "Age in days: " + ChronoUnit.DAYS.between(birthday, currentDay);
     }
 
-    public void calculateAge() {
-        System.out.println("Age in days: " + ChronoUnit.DAYS.between(birthday, currentDay));
+    public String calculateAge() {
+        return "Age in days: " + ChronoUnit.DAYS.between(birthday, currentDay);
     }
 }
