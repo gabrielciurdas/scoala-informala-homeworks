@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>AgeCalculatorServlet</servlet-name>
+  	<display-name>AgeCalculatorServlet</display-name>
+  	<description></description>
+  	<servlet-class>ro.sci.java5.AgeCalculatorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AgeCalculatorServlet</servlet-name>
+  	<url-pattern>/AgeCalculatorServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
