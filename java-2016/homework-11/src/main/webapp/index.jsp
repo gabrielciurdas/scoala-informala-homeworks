@@ -1,3 +1,4 @@
+<%@page import="ro.sci.java5.AgeCalculator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,13 +7,12 @@
 <title>Age Calculator</title>
 </head>
 <body bgcolor="silver">
-	<form method="post" action="calculateAge.jsp">
+	<form method="post" action="AgeCalculatorServlet">
 		<center>
 			<table border="0" width="40%" cellpadding="4">
 				<thead>
 					<tr>
-						<th colspan="4">Age Calculator<br>
-						<br></th>
+						<th colspan="4">Age Calculator<br> <br></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -32,6 +32,20 @@
 						<td></td>
 						<td></td>
 						<td><input type="submit" value="Calculate" /></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>
+							<%
+								String result = (String) request.getAttribute("result");
+								if (result == null) {
+
+								} else {
+									out.println(result);
+								}
+							%>
+						</td>
 					</tr>
 				</tbody>
 			</table>
