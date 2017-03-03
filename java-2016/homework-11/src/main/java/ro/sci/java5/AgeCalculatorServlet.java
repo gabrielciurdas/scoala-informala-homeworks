@@ -14,18 +14,6 @@ public class AgeCalculatorServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		AgeCalculator ageCalculator = new AgeCalculator();
-		/*String error = "Field cannot be empty";
-		if(req.getParameter("yearOfBirth").equals(null)
-				|| req.getParameter("monthOfBirth").equals(null)
-				|| req.getParameter("dayOfBirth").equals(null)
-				|| req.getParameter("currentYear").equals(null)
-				|| req.getParameter("currentMonth").equals(null)
-				|| req.getParameter("currentDay").equals(null)) {
-			req.setAttribute("error", error);
-			req.getRequestDispatcher("index.jsp").forward(req, resp);
-			
-		} else {
-			*/
 			int yearOfBirthday = Integer.parseInt(req.getParameter("yearOfBirth"));
 			int monthOfBirthday = Integer.parseInt(req.getParameter("monthOfBirth"));
 			int birthday = Integer.parseInt(req.getParameter("dayOfBirth"));
@@ -36,7 +24,6 @@ public class AgeCalculatorServlet extends HttpServlet{
 					currentDay);
 			
 			req.setAttribute("result", ageCalculator.displayAgeInDays());
-			req.getRequestDispatcher("index.jsp").forward(req, resp);
-		//}
+			req.getRequestDispatcher("myAge.jsp").forward(req, resp);
 	}
 }

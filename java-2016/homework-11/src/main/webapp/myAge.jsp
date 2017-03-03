@@ -1,27 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="ro.sci.java5.AgeCalculator"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="fieldChecker.js"></script>
+<title>Age Calculator</title>
 </head>
-<body>
-	<form method="post" action="NewServlet">
-		<h4>
-			I want more information about this servlet. <input type="submit"
-				value="Yes" />
-		</h4>
-		<h3>
-			<%
-				String input = (String) request.getAttribute("servletInformation");
-				if (input == null) {
-
-				} else {
-					out.println(input);
-				}
-			%>
-		</h3>
+<body bgcolor="silver">
+	<form method="get" action="AgeCalculatorServlet" onsubmit="return checkFields()">
+		<center>
+			<table border="0" width="40%" cellpadding="4">
+				<thead>
+					<tr>
+						<th colspan="4">Age Calculator<br> <br></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Birthday</td>
+						<td>Year<input type="text" name="yearOfBirth" value="" /></td>
+						<td>Month<input type="text" name="monthOfBirth" value="" /></td>
+						<td>Day<input type="text" name="dayOfBirth" value="" /></td>
+					</tr>
+					<tr>
+						<td>Current day</td>
+						<td>Year<input type="text" name="currentYear" value="" /></td>
+						<td>Month<input type="text" name="currentMonth" value="" /></td>
+						<td>Day<input type="text" name="currentDay" value="" /></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td><input type="submit" value="Calculate" /></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>
+							<%
+								String result = (String) request.getAttribute("result");
+								if (result == null) {
+									
+								} else {
+									out.println(result);
+								}
+							%>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</center>
 	</form>
 </body>
 </html>

@@ -11,20 +11,9 @@
   	<servlet-class>ro.sci.java5.AgeCalculatorServlet</servlet-class>
   </servlet>
   
-  <servlet>
-  	<servlet-name>NewServlet</servlet-name>
-  	<display-name>NewServlet</display-name>
-  	<description></description>
-  	<servlet-class>ro.sci.java5.NewServlet</servlet-class>
-  </servlet>
-  
   <servlet-mapping>
   	<servlet-name>AgeCalculatorServlet</servlet-name>
   	<url-pattern>/AgeCalculatorServlet</url-pattern>
   </servlet-mapping>
-  
-  <servlet-mapping>
-  	<servlet-name>NewServlet</servlet-name>
-  	<url-pattern>/NewServlet</url-pattern>
-  </servlet-mapping>
+
 </web-app>
