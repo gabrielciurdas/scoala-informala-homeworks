@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="fieldChecker.js"></script>
 <title>Age Calculator</title>
 </head>
 <body bgcolor="silver">
-	<form method="post" action="AgeCalculatorServlet">
+	<form method="get" action="AgeCalculatorServlet" onsubmit="return checkFields()">
 		<center>
 			<table border="0" width="40%" cellpadding="4">
 				<thead>
@@ -18,9 +19,9 @@
 				<tbody>
 					<tr>
 						<td>Birthday</td>
-						<td>Year<input type="text" name="yearOfBirthday" value="" /></td>
-						<td>Month<input type="text" name="monthOfBirthday" value="" /></td>
-						<td>Day<input type="text" name="birthday" value="" /></td>
+						<td>Year<input type="text" name="yearOfBirth" value="" /></td>
+						<td>Month<input type="text" name="monthOfBirth" value="" /></td>
+						<td>Day<input type="text" name="dayOfBirth" value="" /></td>
 					</tr>
 					<tr>
 						<td>Current day</td>
@@ -40,7 +41,7 @@
 							<%
 								String result = (String) request.getAttribute("result");
 								if (result == null) {
-
+									
 								} else {
 									out.println(result);
 								}
@@ -50,6 +51,11 @@
 				</tbody>
 			</table>
 		</center>
+	</form>
+	<form method="post" action="myAge.jsp">
+		<h4>
+			Click OK to test another servlet <input type="submit" value="OK" />
+		</h4>
 	</form>
 </body>
 </html>
