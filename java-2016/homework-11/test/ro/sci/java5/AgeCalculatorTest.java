@@ -5,6 +5,14 @@ import java.time.temporal.ChronoUnit;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * This Unit Test class for AgeCalculator class.
+ * 
+ * @author Gabriel Ciurdas
+ *         <p>
+ *         Created on 4/3/2017
+ *
+ */
 public class AgeCalculatorTest {
 
 	@Test
