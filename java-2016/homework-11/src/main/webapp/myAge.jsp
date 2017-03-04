@@ -20,15 +20,15 @@
 				<tbody>
 					<tr>
 						<td>Birthday</td>
-						<td>Year<input type="text" name="yearOfBirth" value="" /></td>
-						<td>Month<input type="text" name="monthOfBirth" value="" /></td>
-						<td>Day<input type="text" name="dayOfBirth" value="" /></td>
+						<td>Year<input type="text" name="yearOfBirth" value="" placeholder="Year of birth"/></td>
+						<td>Month<input type="text" name="monthOfBirth" value="" placeholder="Month of birth"/></td>
+						<td>Day<input type="text" name="dayOfBirth" value="" placeholder="Day of birth"/></td>
 					</tr>
 					<tr>
 						<td>Current day</td>
-						<td>Year<input type="text" name="currentYear" value="" /></td>
-						<td>Month<input type="text" name="currentMonth" value="" /></td>
-						<td>Day<input type="text" name="currentDay" value="" /></td>
+						<td>Year<input type="text" name="currentYear" value="" placeholder="Current year"/></td>
+						<td>Month<input type="text" name="currentMonth" value="" placeholder="Current month"/></td>
+						<td>Day<input type="text" name="currentDay" value="" placeholder="Current day"/></td>
 					</tr>
 					<tr>
 						<td></td>
