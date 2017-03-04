@@ -8,7 +8,8 @@
 <title>Age Calculator</title>
 </head>
 <body bgcolor="silver">
-	<form method="get" action="AgeCalculatorServlet" onsubmit="return checkFields()">
+	<form method="get" action="AgeCalculatorServlet"
+		onsubmit="return checkFields()">
 		<center>
 			<table border="0" width="40%" cellpadding="4">
 				<thead>
@@ -41,7 +42,7 @@
 							<%
 								String result = (String) request.getAttribute("result");
 								if (result == null) {
-									
+
 								} else {
 									out.println(result);
 								}

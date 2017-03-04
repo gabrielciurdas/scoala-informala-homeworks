@@ -6,11 +6,10 @@ function checkFields() {
 	var currentMonth = document.getElementsByName('currentMonth')[0].value;
 	var currentDay = document.getElementsByName('currentDay')[0].value;
 
-	if (yearOfBirth == "" || monthOfBirth == "" || dayOfBirth == "" 
-		|| currentYear == ""  || currentMonth == "" || currentDay == "") {
+	if (yearOfBirth == "" || monthOfBirth == "" || dayOfBirth == ""
+			|| currentYear == "" || currentMonth == "" || currentDay == "") {
 		alert("Fields cannot be empty!");
 		return false;
 	}
-	document.getElementById("ageInDays").submit();
 	return true;
 }
