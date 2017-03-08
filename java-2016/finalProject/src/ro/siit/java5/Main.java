@@ -36,16 +36,9 @@ public class Main {
 		deliveryThreads.add(new DeliveryThread(packsToBucuresti, Location.BUCURESTI.getDistanceToTarget()));
 		deliveryThreads.add(new DeliveryThread(packsToBistrita, Location.BISTRITA.getDistanceToTarget()));
 		
-		for(DeliveryThread d: deliveryThreads) {
-			d.start();
-			try {
-				TimeUnit.SECONDS.sleep(d.getDistanceToTarget());
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println(d.getDistanceToTarget() + d.toString());
-		}
+		deliveryThreads.get(0).start();
+		deliveryThreads.get(1).start();
+		deliveryThreads.get(2).start();
 
 	}
 }
