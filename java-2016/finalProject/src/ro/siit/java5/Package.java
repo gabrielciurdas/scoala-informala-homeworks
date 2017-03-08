@@ -1,19 +1,18 @@
 package ro.siit.java5;
 
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Comparator;
 
 public class Package implements Comparator<Package> {
-	private String targetLocation;
-	private Double distanceInKm;
-	private double merchandiseValue;
-	private String deliveryDate;
+	private Location targetLocation;
+	private Integer distanceInKm = 0;
+	private double merchandiseValue = 0;
+	private String deliveryDate = "";
 
-	public Package(String targetLocation, Double distanceInKm, double merchandiseValue, String deliveryDate) {
+	public Package(Location targetLocation, double merchandiseValue, String deliveryDate) {
 		super();
 		this.targetLocation = targetLocation;
-		this.distanceInKm = distanceInKm;
+		distanceInKm = targetLocation.getDistanceToTarget();
 		this.merchandiseValue = merchandiseValue;
 		this.deliveryDate = deliveryDate;
 	}
@@ -27,14 +26,14 @@ public class Package implements Comparator<Package> {
 	/**
 	 * @return the targetLocation
 	 */
-	public String getTargetLocation() {
+	public Location getTargetLocation() {
 		return targetLocation;
 	}
 
 	/**
 	 * @return the distanceInKm
 	 */
-	public double getDistanceInKm() {
+	public int getDistanceInKm() {
 		return distanceInKm;
 	}
 
